@@ -1,0 +1,108 @@
+// ROCK PAPAER SCISSORS
+
+
+// HOW TO GET USER INPUT WITH NODE JS
+// By using prompt-sync
+// Run npm install prompt-sync in the terminal + Call const promt like below then use it
+const prompt = require('prompt-sync')({sigint: true});
+
+
+
+
+
+const array = ['rock','paper','scissors']
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+function getComputerChoice() {
+    let index = getRandomInt(3)
+    return(array[index])
+}
+
+function getHumanChoice() {
+    let choice = prompt('Rock,paper or scissors ?! ');
+    choice = choice.toLowerCase()
+
+    if(!array.includes(choice)){
+        console.log("Only valid values ->  'rock' , 'paper' or 'scissors'")
+        return getHumanChoice()
+    }else{
+        return choice
+    }
+}
+
+
+
+
+
+let humanScore = 0
+let computerScore = 0
+let draw=0
+
+
+
+
+
+function playRound() {
+
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    console.log("You choose : " + humanSelection)
+    console.log("Computer choose : " + computerSelection)
+    
+   if(humanSelection===computerSelection){
+               draw+=1
+               return console.log("Draw!")
+               
+   }
+   else if( (humanSelection==="rock" && computerSelection==="paper") ||
+           (humanSelection==="scissors" && computerSelection==="rock") || 
+           (humanSelection==="paper" && computerSelection==="scissors") ) {
+
+                computerScore+=1 
+                return console.log("Computer Win the Round!")
+   }
+   else{
+                humanScore+=1
+                return console.log("You Win the Round!")
+   }
+
+   
+
+}
+
+
+
+function play(){
+
+    for(let i=0;i<5;i++){
+        playRound()
+        console.log("||||||||||||||||||||||")
+
+    }
+    
+    console.log("--------------------")
+    console.log("Your score is = " +humanScore)
+    console.log("Computer score is = " +computerScore)
+    console.log("Draw rounds total is =  " + draw)
+    console.log("--------------------")
+
+ 
+    if (humanScore > computerScore) {
+        return console.log("YOU WIN THE GAME! CONGRATULATIONS!!!");
+    } else if (humanScore < computerScore) {
+        return console.log("NOT LUCKY, COMPUTER WINS THIS TIME!!!");
+    } else {
+        return console.log("IT'S A TIE!");
+    }
+
+}
+
+
+play()
+
+
