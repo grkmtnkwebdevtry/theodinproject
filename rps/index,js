@@ -4,7 +4,8 @@
 // HOW TO GET USER INPUT WITH NODE JS
 // By using prompt-sync
 // Run npm install prompt-sync in the terminal + Call const promt like below then use it
-const prompt = require('prompt-sync')({sigint: true});
+
+// const prompt = require('prompt-sync')({sigint: true});
 
 
 
@@ -22,17 +23,24 @@ function getComputerChoice() {
     return(array[index])
 }
 
-function getHumanChoice() {
-    let choice = prompt('Rock,paper or scissors ?! ');
-    choice = choice.toLowerCase()
+// function getHumanChoice() {
+//     let choice = prompt('Rock,paper or scissors ?! ');
+//     choice = choice.toLowerCase()
 
-    if(!array.includes(choice)){
-        console.log("Only valid values ->  'rock' , 'paper' or 'scissors'")
-        return getHumanChoice()
-    }else{
-        return choice
-    }
-}
+//     if(!array.includes(choice)){
+//         console.log("Only valid values ->  'rock' , 'paper' or 'scissors'")
+//         return getHumanChoice()
+//     }else{
+//         return choice
+//     }
+// }
+
+
+const humanChoice = document.querySelector(".humanChoice")
+const computerChoice = document.querySelector(".computerChoice")
+const roundResult = document.querySelector(".roundResult")
+const humanScoreDOM = document.querySelector(".humanScore")
+const computerScoreDOM = document.querySelector(".computerScore")
 
 
 
@@ -46,17 +54,23 @@ let draw=0
 
 
 
-function playRound() {
+function playRound(value) {
 
-    const humanSelection = getHumanChoice();
+
+
+    const humanSelection = value;
+
+
     const computerSelection = getComputerChoice();
 
-    console.log("You choose : " + humanSelection)
-    console.log("Computer choose : " + computerSelection)
+
+    humanChoice.textContent="You choose : " + humanSelection
+    computerChoice.textContent="Computer choose : " + computerSelection
     
    if(humanSelection===computerSelection){
                draw+=1
-               return console.log("Draw!")
+            //    return console.log("Draw!")
+               roundResult.textContent="Draw!"
                
    }
    else if( (humanSelection==="rock" && computerSelection==="paper") ||
@@ -64,45 +78,81 @@ function playRound() {
            (humanSelection==="paper" && computerSelection==="scissors") ) {
 
                 computerScore+=1 
-                return console.log("Computer Win the Round!")
+                // return console.log("Computer Win the Round!")
+                roundResult.textContent="Computer Win the Round!"
+
    }
    else{
                 humanScore+=1
-                return console.log("You Win the Round!")
+                // return console.log("You Win the Round!")
+                roundResult.textContent="You Win the Round!"
+
+   }
+
+   humanScoreDOM.textContent = "Your score : " + humanScore
+   computerScoreDOM.textContent ="Computer's score : " + computerScore
+
+
+   if(humanScore === 5){
+    reset()
+    return alert("You Win !!!!!!!!!")
+   }
+   else if(computerScore === 5){
+    reset()
+    return alert("Computer Win !!!!!!!!!")
+    
    }
 
    
 
+
+
 }
 
 
 
-function play(){
 
-    for(let i=0;i<5;i++){
-        playRound()
-        console.log("||||||||||||||||||||||")
+function reset() {
+    humanScore = 0
+    computerScore = 0
+    draw=0
+    humanChoice.textContent=""
+    computerChoice.textContent=""
+    roundResult.textContent=""
+    humanScoreDOM.textContent=""
+    computerScoreDOM.textContent=""
 
-    }
+}
+
+
+
+
+// function play(){
+
+//     for(let i=0;i<5;i++){
+//         playRound()
+//         console.log("||||||||||||||||||||||")
+
+//     }
     
-    console.log("--------------------")
-    console.log("Your score is = " +humanScore)
-    console.log("Computer score is = " +computerScore)
-    console.log("Draw rounds total is =  " + draw)
-    console.log("--------------------")
+//     console.log("--------------------")
+//     console.log("Your score is = " +humanScore)
+//     console.log("Computer score is = " +computerScore)
+//     console.log("Draw rounds total is =  " + draw)
+//     console.log("--------------------")
 
  
-    if (humanScore > computerScore) {
-        return console.log("YOU WIN THE GAME! CONGRATULATIONS!!!");
-    } else if (humanScore < computerScore) {
-        return console.log("NOT LUCKY, COMPUTER WINS THIS TIME!!!");
-    } else {
-        return console.log("IT'S A TIE!");
-    }
+//     if (humanScore > computerScore) {
+//         return console.log("YOU WIN THE GAME! CONGRATULATIONS!!!");
+//     } else if (humanScore < computerScore) {
+//         return console.log("NOT LUCKY, COMPUTER WINS THIS TIME!!!");
+//     } else {
+//         return console.log("IT'S A TIE!");
+//     }
 
-}
+// }
 
 
-play()
+// play()
 
 
