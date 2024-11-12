@@ -1,0 +1,43 @@
+body {
+    display:grid;
+    gap:25px;
+}
+
+
+
+
+h1 {
+    text-align: center;
+}
+
+button {
+    width: 200px;
+    margin: 5px;
+    font-size: 20px;
+}
+
+
+
+.square {
+    /* width: calc(100% / 16); 
+    height: calc(100% / 16);  */
+    box-sizing: border-box; /* Helps to manage border and padding */
+    border: 2px solid lightgray; /* Optional: separates squares visibly */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 960px; /* This keeps the grid width constant */
+    height: 960px; /* Optional: makes it a square */
+    border: 4px solid black; /* Optional: makes it easier to see */
+    margin: auto;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+ 
+}
+
+
